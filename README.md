@@ -1,27 +1,6 @@
-# obsd.daily.repass
----
-This repository is a fork of `obsidian-daily-todo-pro` / `obsidian-rollover-daily-todos`, maintained by Deki @ kuuh.art.
-
-This fork includes MIT-licensed code from upstream sources. Original portions of the project remain licensed under MIT,
-while this fork's newer additions are licensed under the Duck License for non-commercial use. Commercial use of the new
-contributions requires prior permission; please contact the copyright holder to obtain a license. See `LICENSE` for details.
-
-## Original source
-
-- Upstream project: https://github.com/shichongrui/obsidian-rollover-daily-todos
-- Original fork: https://github.com/die4passion/obsidian-daily-todo-pro
-- Original author(s): `shichongrui`, `Die4passion`
-
-## License
-
-- Original upstream code: MIT
-- This fork's newer contributions: Duck License for non-commercial use
-- Commercial use of this fork's newer contributions requires prior permission
-- See `LICENSE` for the Duck License text and attribution requirements.
-
 ## Obsidian Daily Repass
 
-[Português](README.ptbr.md)
+[Português 🇧🇷](README.ptbr.md)
 
 A daily review companion for Obsidian that helps you carry unfinished work forward into today’s note and keep your routine simple.
 
@@ -46,7 +25,30 @@ A daily review companion for Obsidian that helps you carry unfinished work forwa
 ## Commands
 
 1. Open the command palette with Ctrl+P or / in any note
-2. Search for “todo pro”
+2. Search for “obsd.repass”
 3. Choose “bring tasks to today\'s note” to bring tasks
 4. Choose “Undo last import/rollover” to undo the last change when available (2 min)
+
+---
+# obsd.daily.repass
+---
+This repository is a fork of `obsidian-daily-todo-pro` / `obsidian-rollover-daily-todos`, maintained by Deki @ kuuh.art.
+
+This fork includes MIT-licensed code from upstream sources. Original portions of the project remain licensed under MIT,
+while this fork's newer additions are licensed under the Duck License for non-commercial use. Commercial use of the new
+contributions requires prior permission; please contact the copyright holder to obtain a license. See `LICENSE` for details.
+
+## Original source
+
+- Upstream project: https://github.com/shichongrui/obsidian-rollover-daily-todos
+- Original fork: https://github.com/die4passion/obsidian-daily-todo-pro
+- Original author(s): `shichongrui`, `Die4passion`
+
+## License
+
+- Original upstream code: MIT
+- This fork's newer contributions: Duck License for non-commercial use
+- Commercial use of this fork's newer contributions requires prior permission
+- See `LICENSE` for the Duck License text and attribution requirements.
+
 
