@@ -22,6 +22,7 @@ export default class DailyTodoProPlugin extends Plugin {
       templateHeading: 'none',
       deleteOnComplete: false,
       removeEmptyTodos: false,
+      skipCompletedTasks: true,
       displayTodayInHistory: false,
       todayHistoryHeader: '## Today in history',
       historyShowDirect: false,
@@ -78,108 +79,79 @@ export default class DailyTodoProPlugin extends Plugin {
     return dailyNoteFiles[1]
   }
 
-  async getAllUnfinishedTodos (file, templateHeading) {
-    // get unfinished todos from yesterday, if exist
-    const contents = await this.app.vault.cachedRead(file)
+  /**
+   * Strip completed tasks (checkbox marked with x/X) out of a list of
+   * lines, along with any lines nested underneath them (determined by
+   * leading whitespace being greater than the completed task's own
+   * indentation). Used so that "done" work doesn't get rolled forward
+   * when a whole heading section is copied over.
+   */
+  stripCompletedTasks (lines) {
+    const result = []
+    let skipIndent = null
 
-    /**
-     * 1. 找到所有heading
-     * 2. 找到所有todo
-     * 3. 筛选heading 和 下一个同级heading之间的todo
-     * 4.
-     */
-    const listItems = this.app.metadataCache.getFileCache(file)?.listItems
-    let noTaskUndo = true
+    for (const line of lines) {
+      const indentLength = line.match(/^\s*/)[0].length
+      const checkboxMatch = line.match(/^\s*[-+*]\s\[([^\]])\]\s/)
 
-    if (listItems) {
-      for (const key in listItems) {
-        if (Object.hasOwnProperty.call(listItems, key)) {
-          const element = listItems[key]
-          // console.log(element.task)
-          if (listItems[key].task == ' ') {
-            noTaskUndo = false
-            break
-          }
-          element.task == ' ' && taskUndoCount++
-        }
-      }
-    }
-
-    if (noTaskUndo) {
-      return []
-    }
-
-    // for (element = listItems[index]) element.task something
-    // todo: task?: ' ' | 'x' | '?';, deal diffrently (requirements from forum)
-    /**
-     * means:
-     *
-     * ?   =  dones yesterday
-     * x   =  dones today
-     * ''  =  todo today
-     *
-     * today from yesterday:
-     *
-     * ?  -> none
-     * x  -> ?
-     * '' -> ''
-     *
-     * choose del in setting: in yesterday
-     *
-     * '' -> none
-     *
-     */
-
-    let unfinishedTodosRegex = /\t*[-+*]\s\[[^x]\].*/g
-    let my_todo = []
-
-    if (templateHeading !== 'none') {
-      const templateHeadingLength = templateHeading.match(/#{1,}/)[0].length
-      unfinishedTodosRegex = new RegExp(
-        '\\t*(([-+*]\\s\\[[^x]\\])|(#{' +
-          String(templateHeadingLength) +
-          ',}))\\s.*',
-        'g'
-      )
-      // console.log(unfinishedTodosRegex)
-      const my_headerIdentify = '#'.repeat(templateHeadingLength) + ' '
-      let header_count = 0
-      let my_todo_start_now = false
-
-      let todos_yesterday = Array.from(
-        contents.matchAll(unfinishedTodosRegex),
-        m => m[0]
-      )
-
-      for (let i = 0; i < todos_yesterday.length; i++) {
-        // 1. 筛选 等于templateHeading才开始循环
-        if (todos_yesterday[i].startsWith(templateHeading)) {
-          my_todo_start_now = true
+      // We're currently skipping the children nested under a completed task
+      if (skipIndent !== null) {
+        if (line.trim() !== '' && indentLength > skipIndent) {
           continue
         }
-        if (my_todo_start_now) {
-          if (todos_yesterday[i].startsWith(my_headerIdentify)) {
-            if (header_count > 0) {
-              break
-            }
-            header_count++
-          } else {
-            if (todos_yesterday[i].startsWith('#')) {
-              if (i > 0 && todos_yesterday[i - 1].endsWith('\n')) {
-                todos_yesterday[i] = todos_yesterday[i] + '\n'
-              } else {
-                todos_yesterday[i] = '\n' + todos_yesterday[i] + '\n'
-              }
-            }
-            my_todo.push(todos_yesterday[i])
-          }
-        }
+        skipIndent = null
       }
-    } else {
-      my_todo = Array.from(contents.matchAll(unfinishedTodosRegex), m => m[0])
+
+      if (checkboxMatch && /[xX]/.test(checkboxMatch[1])) {
+        // this is a completed task: drop it, and start skipping its children
+        skipIndent = indentLength
+        continue
+      }
+
+      result.push(line)
     }
 
-    return my_todo
+    return result
+  }
+
+  /**
+   * Grab an entire heading section - every line between `templateHeading`
+   * and the next heading of the same (or higher) level - so headings,
+   * prose, sub-bullets, and todos all come along together.
+   *
+   * If no heading is selected ('none'), fall back to the old behaviour:
+   * grab every unfinished todo in the file, to be appended to the end
+   * of today's note.
+   */
+  async getHeadingSection (file, templateHeading) {
+    const contents = await this.app.vault.cachedRead(file)
+    const lines = contents.split('\n')
+
+    if (templateHeading === 'none') {
+      const unfinishedTodoRegex = /^\s*[-+*]\s\[[^xX]\]\s.*/
+      return lines.filter(line => unfinishedTodoRegex.test(line))
+    }
+
+    const headingLevelMatch = templateHeading.match(/^#+/)
+    if (!headingLevelMatch) return []
+    const level = headingLevelMatch[0].length
+
+    const headingIndex = lines.findIndex(
+      line => line.trim() === templateHeading.trim()
+    )
+    if (headingIndex === -1) return []
+
+    const headingRegex = /^(#{1,6})\s/
+    let endIndex = lines.length
+    for (let i = headingIndex + 1; i < lines.length; i++) {
+      const match = lines[i].match(headingRegex)
+      if (match && match[1].length <= level) {
+        endIndex = i
+        break
+      }
+    }
+
+    return lines.slice(headingIndex + 1, endIndex)
   }
 
   async rollover (file = undefined) {
@@ -221,6 +193,7 @@ export default class DailyTodoProPlugin extends Plugin {
         templateHeading,
         deleteOnComplete,
         removeEmptyTodos,
+        skipCompletedTasks,
         displayTodayInHistory,
         todayHistoryHeader,
         historyShowDirect,
@@ -234,14 +207,20 @@ export default class DailyTodoProPlugin extends Plugin {
       // TODO: Rollover to subheadings (optional)
       // this.sortHeadersIntoHeirarchy(lastDailyNote)
 
-      // get unfinished todos from yesterday, if exist
-      let todos_yesterday = await this.getAllUnfinishedTodos(
+      // get the heading section (or unfinished todos, if no heading chosen) from yesterday
+      let todos_yesterday = await this.getHeadingSection(
         lastDailyNote,
         templateHeading
       )
+
+      // optionally drop already-completed tasks (and their nested children)
+      if (skipCompletedTasks) {
+        todos_yesterday = this.stripCompletedTasks(todos_yesterday)
+      }
+
       if (todos_yesterday.length == 0) {
         console.log(
-          `rollover-daily-todos: 0 todos found in ${lastDailyNote.basename}.md`
+          `rollover-daily-todos: nothing found in ${lastDailyNote.basename}.md`
         )
         return
       }
@@ -394,7 +373,7 @@ export default class DailyTodoProPlugin extends Plugin {
       const todosAddedString =
         todosAdded == 0
           ? ''
-          : `- ${todosAdded} todo${todosAdded > 1 ? 's' : ''} rolled over.`
+          : `- ${todosAdded} item${todosAdded > 1 ? 's' : ''} rolled over.`
       const emptiesToNotAddToTomorrowString =
         emptiesToNotAddToTomorrow == 0
           ? ''

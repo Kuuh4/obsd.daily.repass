@@ -28,20 +28,24 @@ export default class RolloverSettingTab extends PluginSettingTab {
 
     this.containerEl.empty()
     const headingDoc = `
-    Which heading from your template should the todos go under. 
+    Which heading from your template should be rolled over.
     ~~>_<~~ 1. 
     set -> '## todo'(recommended): 
-    you will get all the todo under '## todo' till the next '##' tag like '## boring' 
+    the ENTIRE section under '## todo' (headings, notes, sub-bullets, and tasks) will be brought over, up to the next '##' tag like '## boring' 
     ~~>_<~~ 2. 
     Set -> none: 
-    all the todos will be add to the end of today's diary
+    all the unfinished todos in the file will be added to the end of today's diary
     `
     const delDesc = `
-    Once todos are found, they are added to Today's Daily Note. 
-    If successful, they are deleted from Yesterday's Daily note. 
+    Once the section is found, it's added to Today's Daily Note. 
+    If successful, it's deleted from Yesterday's Daily note. 
     Enabling this is destructive and may result in lost data. 
-    Keeping this disabled will simply duplicate them from yesterday's note and place them in the appropriate section. 
-    Note that currently, duplicate todos will be deleted regardless of what heading they are in, and which heading you choose from above.
+    Keeping this disabled will simply duplicate it from yesterday's note and place it in the appropriate section. 
+    Note that currently, duplicate lines will be deleted regardless of what heading they are in, and which heading you choose from above.
+    `
+    const skipCompletedDesc = `
+    When a heading is selected above, the entire section is rolled over, including notes and already-completed tasks.
+    Turn this on to leave completed tasks (- [x]) - and anything nested underneath them - behind, so only unfinished work and notes come forward.
     `
     new Setting(this.containerEl)
       .setName('Template heading')
@@ -63,7 +67,19 @@ export default class RolloverSettingTab extends PluginSettingTab {
       )
 
     new Setting(this.containerEl)
-      .setName('Delete todos from previous day')
+      .setName('Skip already-completed tasks')
+      .setDesc(skipCompletedDesc)
+      .addToggle(toggle =>
+        toggle
+          .setValue(this.plugin.settings.skipCompletedTasks ?? true)
+          .onChange(value => {
+            this.plugin.settings.skipCompletedTasks = value
+            this.plugin.saveSettings()
+          })
+      )
+
+    new Setting(this.containerEl)
+      .setName('Delete rolled-over content from previous day')
       .setDesc(delDesc)
       .addToggle(toggle =>
         toggle
