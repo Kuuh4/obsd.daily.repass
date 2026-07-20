@@ -30,21 +30,22 @@ A daily review companion for Obsidian that helps you carry unfinished work forwa
 4. Choose “Undo last import/rollover” to undo the last change when available (2 min)
 
 ---
-# obsd.daily.repass
----
+
+### about this fork - obsd.daily.repass
+
 This repository is a fork of `obsidian-daily-todo-pro` / `obsidian-rollover-daily-todos`, maintained by Deki @ kuuh.art.
 
 This fork includes MIT-licensed code from upstream sources. Original portions of the project remain licensed under MIT,
 while this fork's newer additions are licensed under the Duck License for non-commercial use. Commercial use of the new
 contributions requires prior permission; please contact the copyright holder to obtain a license. See `LICENSE` for details.
 
-## Original source
+#### Original source
 
 - Upstream project: https://github.com/shichongrui/obsidian-rollover-daily-todos
 - Original fork: https://github.com/die4passion/obsidian-daily-todo-pro
 - Original author(s): `shichongrui`, `Die4passion`
 
-## License
+#### License
 
 - Original upstream code: MIT
 - This fork's newer contributions: Duck License for non-commercial use
