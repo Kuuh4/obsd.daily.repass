@@ -1,15 +1,24 @@
 {
-  "name": "obsidian-daily-todo-pro",
-  "version": "0.0.1",
-  "description": "get things dead day by day - enhance your daily note",
+  "name": "obsd.daily.repass",
+  "version": "0.0.2",
+  "description": "bring your unfinished tasks to the next daily note",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
     "build": "rollup --config rollup.config.js --environment BUILD:production"
   },
   "keywords": [],
-  "author": "Die4passion",
-  "license": "MIT",
+  "author": "Deki @ kuuh.art",
+  "contributors": [
+    {
+      "name": "Die4passion",
+      "url": "https://die4passion.github.io/notes/#/"
+    },
+    {
+      "name": "shichongrui"
+    }
+  ],
+  "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-node-resolve": "^13.1.3",

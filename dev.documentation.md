@@ -33,6 +33,20 @@ at repo root (gitignored, built at release time). No test suite exists in
 this repo — verification so far has only been `node --check` for syntax,
 not behavioral testing inside actual Obsidian.
 
+## Version log
+
+### v00.2
+- Fixed support for numbered markdown todo items in rollover filtering.
+- Updated completed-task stripping to recognize `1. [x]`, `2. [x]`, etc.
+- Updated unfinished-todo fallback mode and empty-checkbox filtering to
+  support numbered list items as well.
+
+## License
+
+- Original upstream code is MIT-licensed.
+- This fork's new contributions are licensed under the Duck License.
+- See `LICENSE` for full license text and attribution.
+
 ## Settings model (`this.settings`, persisted via `saveData`/`loadData`)
 
 | key | default | meaning |

@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-daily-todo-pro",
-	"name": "todo → pro",
-	"version": "0.0.1",
+	"id": "obsd.daily.repass",
+	"name": "obsd.daily.repass",
+	"version": "0.0.2",
 	"minAppVersion": "0.12.12",
 	"description": "Obsidian plugin that get things dead day by day - enhance your daily note",
-	"author": "Die4passion",
-	"authorUrl": "https://die4passion.github.io/notes/#/",
+	"author": "Deki",
+	"authorUrl": "https://kuuh.art",
 	"isDesktopOnly": false
 }

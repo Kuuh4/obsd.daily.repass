@@ -92,7 +92,7 @@ export default class DailyTodoProPlugin extends Plugin {
 
     for (const line of lines) {
       const indentLength = line.match(/^\s*/)[0].length
-      const checkboxMatch = line.match(/^\s*[-+*]\s\[([^\]])\]\s/)
+      const checkboxMatch = line.match(/^\s*(?:[-+*]|\d+\.)\s\[([^\]])\]\s/)
 
       // We're currently skipping the children nested under a completed task
       if (skipIndent !== null) {
@@ -128,7 +128,7 @@ export default class DailyTodoProPlugin extends Plugin {
     const lines = contents.split('\n')
 
     if (templateHeading === 'none') {
-      const unfinishedTodoRegex = /^\s*[-+*]\s\[[^xX]\]\s.*/
+      const unfinishedTodoRegex = /^\s*(?:[-+*]|\d+\.)\s\[[^xX]\]\s.*/
       return lines.filter(line => unfinishedTodoRegex.test(line))
     }
 
@@ -244,7 +244,7 @@ export default class DailyTodoProPlugin extends Plugin {
       if (removeEmptyTodos) {
         todos_yesterday.forEach((line, i) => {
           const trimmedLine = (line || '').trim()
-          if (trimmedLine != '- [ ]' && trimmedLine != '- [  ]') {
+          if (!/^((?:[-+*]|\d+\.)\s\[\s*\])$/.test(trimmedLine)) {
             todos_today.push(line)
             todosAdded++
           } else {

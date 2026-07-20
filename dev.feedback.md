@@ -10,7 +10,9 @@ It works quite nicely! It just happens to ignore numbered to-dos, as in :
 3. [x] kept //should get removed
     1. [ ] kept //should get removed as well, by inheritance
 - [ ] works //is kept
-- [x] works //is removed 
+- [x] works //is removed
+    - [ ] works //is removed as expected of inheritance
+
 ```
 
 else from that, everything is fine by now

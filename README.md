@@ -1,6 +1,23 @@
 # obsd.daily.repass
 ---
-# Below is the original repo's readme.md
+This repository is a fork of `obsidian-daily-todo-pro` / `obsidian-rollover-daily-todos`, maintained by Deki @ kuuh.art.
+
+This fork includes MIT-licensed code from upstream sources. Original portions of the project remain licensed under MIT,
+while this fork's newer additions are licensed under the Duck License for non-commercial use. Commercial use of the new
+contributions requires prior permission; please contact the copyright holder to obtain a license. See `LICENSE` for details.
+
+## Original source
+
+- Upstream project: https://github.com/shichongrui/obsidian-rollover-daily-todos
+- Original fork: https://github.com/die4passion/obsidian-daily-todo-pro
+- Original author(s): `shichongrui`, `Die4passion`
+
+## License
+
+- Original upstream code: MIT
+- This fork's newer contributions: Duck License for non-commercial use
+- Commercial use of this fork's newer contributions requires prior permission
+- See `LICENSE` for the Duck License text and attribution requirements.
 
 ## Obsidian Daily Todo Pro Plugin
 

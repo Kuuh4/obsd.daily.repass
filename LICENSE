@@ -1,0 +1,27 @@
+duck license
+
+This fork contains code derived from MIT-licensed upstream sources.
+Original upstream portions remain under MIT, while this fork's new contributions
+are licensed under the Duck License.
+
+copyright (c) 2026 deki @ kuuh.art
+
+permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "software"), to use,
+copy, modify, merge, and share the software for non-commercial purposes only,
+subject to the following conditions:
+
+1. the above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the software.
+2. commercial use of this fork's new contributions is not permitted without
+   prior permission from the copyright holder.
+3. if you wish to use this software or any derivative work for commercial
+   purposes, please contact the copyright holder for a commercial license.
+
+the software is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and non-infringement. in no event shall the
+authors or copyright holders be liable for any claim, damages or other
+liability, whether in an action of contract, tort or otherwise, arising from,
+out of or in connection with the software or the use or other dealings in the
+software.
