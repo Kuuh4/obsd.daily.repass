@@ -1,5 +1,5 @@
-# uhhhh yeah?
-
+# obsd.daily.repass
+---
 # Below is the original repo's readme.md
 
 ## Obsidian Daily Todo Pro Plugin

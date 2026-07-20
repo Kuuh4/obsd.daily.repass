@@ -1,4 +1,4 @@
-# CLAUDE.md — obsidian-daily-todo-pro
+# CLAUDE.md — obsd.daily.repass
 
 Context doc for whoever (human or Claude) picks this project up next.
 
@@ -6,7 +6,7 @@ Context doc for whoever (human or Claude) picks this project up next.
 
 Obsidian plugin. On creation of today's daily note, or via command, it pulls
 content forward from the most recent previous daily note into today's note.
-Fork of `obsidian-rollover-daily-todos`, extended with: template-heading
+Fork of `obsidian-daily-todo-pro` that was a fork of `obsidian-rollover-daily-todos`, extended with: template-heading
 targeting, delete-on-complete, empty-todo filtering, "today in history"
 backlinks, and a "Lucky Note" random-daily-note command.
 
