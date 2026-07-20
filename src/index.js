@@ -433,11 +433,11 @@ export default class DailyTodoProPlugin extends Plugin {
 
     this.addCommand({
       id: 'obsidian-daily-todo-pro-rollover',
-      name: 'Rollover Todos Now',
+      name: 'bring tasks to today\'s note',
       callback: () => this.rollover()
     })
 
-    this.addCommand({
+    /* this.addCommand({
       id: 'obsidian-daily-todo-pro-random',
       name: 'Lucky Note',
       callback: () => {
@@ -449,11 +449,11 @@ export default class DailyTodoProPlugin extends Plugin {
         }
         this.app.workspace.getUnpinnedLeaf().openFile(existingFile)
       }
-    })
+    }) */
 
     this.addCommand({
       id: 'obsidian-daily-todo-pro-undo',
-      name: 'Undo last rollover',
+      name: 'Undo last import/rollover',
       checkCallback: checking => {
         // no history, don't allow undo
         if (this.undoHistory.length > 0) {

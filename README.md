@@ -47,6 +47,6 @@ A daily review companion for Obsidian that helps you carry unfinished work forwa
 
 1. Open the command palette with Ctrl+P or / in any note
 2. Search for “todo pro”
-3. Choose “Rollover Todos Now” to bring tasks forward
-4. Choose “Undo last rollover” to undo the last change when available
-5. Choose “Lucky Note” to create a lucky note
+3. Choose “bring tasks to today\'s note” to bring tasks
+4. Choose “Undo last import/rollover” to undo the last change when available (2 min)
+
