@@ -3,7 +3,7 @@
 	"name": "obsd.daily.repass",
 	"version": "0.0.2",
 	"minAppVersion": "0.12.12",
-	"description": "Obsidian plugin that get things dead day by day - enhance your daily note",
+	"description": "bring your unfinished tasks to the next daily note",
 	"author": "Deki",
 	"authorUrl": "https://kuuh.art",
 	"isDesktopOnly": false

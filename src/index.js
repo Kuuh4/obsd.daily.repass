@@ -79,6 +79,22 @@ export default class DailyTodoProPlugin extends Plugin {
     return dailyNoteFiles[1]
   }
 
+  getTaskData (line) {
+    const indentLength = line.match(/^\s*/)[0].length
+    const taskMatch = line.match(/^\s*(?:[-+*]|\d+\.)\s*\[(.*?)\](?:\s|$)/)
+
+    if (!taskMatch) {
+      return null
+    }
+
+    const checkbox = (taskMatch[1] || '').trim()
+    return {
+      indentLength,
+      checkbox,
+      isCompleted: /[xX]/.test(checkbox)
+    }
+  }
+
   /**
    * Strip completed tasks (checkbox marked with x/X) out of a list of
    * lines, along with any lines nested underneath them (determined by
@@ -91,8 +107,8 @@ export default class DailyTodoProPlugin extends Plugin {
     let skipIndent = null
 
     for (const line of lines) {
-      const indentLength = line.match(/^\s*/)[0].length
-      const checkboxMatch = line.match(/^\s*(?:[-+*]|\d+\.)\s\[([^\]])\]\s/)
+      const taskData = this.getTaskData(line)
+      const indentLength = taskData?.indentLength ?? line.match(/^\s*/)[0].length
 
       // We're currently skipping the children nested under a completed task
       if (skipIndent !== null) {
@@ -102,7 +118,7 @@ export default class DailyTodoProPlugin extends Plugin {
         skipIndent = null
       }
 
-      if (checkboxMatch && /[xX]/.test(checkboxMatch[1])) {
+      if (taskData?.isCompleted) {
         // this is a completed task: drop it, and start skipping its children
         skipIndent = indentLength
         continue
@@ -128,8 +144,10 @@ export default class DailyTodoProPlugin extends Plugin {
     const lines = contents.split('\n')
 
     if (templateHeading === 'none') {
-      const unfinishedTodoRegex = /^\s*(?:[-+*]|\d+\.)\s\[[^xX]\]\s.*/
-      return lines.filter(line => unfinishedTodoRegex.test(line))
+      return lines.filter(line => {
+        const taskData = this.getTaskData(line)
+        return taskData !== null && !taskData.isCompleted
+      })
     }
 
     const headingLevelMatch = templateHeading.match(/^#+/)
