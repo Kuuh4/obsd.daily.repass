@@ -104,69 +104,64 @@ export default class RolloverSettingTab extends PluginSettingTab {
           })
       )
 
-    // 是否选择 加上去年今日
+    // Day-in-history options are disabled in this fork.
     //
-    new Setting(this.containerEl)
-      .setName('Today in history')
-      .setDesc(`Display today in history in the end of the file`)
-      .addToggle(toggle =>
-        toggle
-          .setValue(this.plugin.settings.displayTodayInHistory || false)
-          .onChange(value => {
-            this.plugin.settings.displayTodayInHistory = value
-            this.plugin.saveSettings()
-          })
-      )
-
-    // 指定header
-    new Setting(this.containerEl)
-      .setName('Custom today in history')
-      .setDesc('Used for the header of history  (default ## Today in history)')
-      .addText(text =>
-        text
-          .setPlaceholder(`start with #`)
-          .setValue(
-            this.plugin.settings.todayHistoryHeader || '## Today in history'
-          )
-          .onChange(value => {
-            this.plugin.settings.todayHistoryHeader = value
-            this.plugin.saveSettings()
-          })
-      )
-
-    // 去年今日是否需要直接显示
+    // new Setting(this.containerEl)
+    //   .setName('Today in history')
+    //   .setDesc(`Display today in history in the end of the file`)
+    //   .addToggle(toggle =>
+    //     toggle
+    //       .setValue(this.plugin.settings.displayTodayInHistory || false)
+    //       .onChange(value => {
+    //         this.plugin.settings.displayTodayInHistory = value
+    //         this.plugin.saveSettings()
+    //       })
+    //   )
     //
-    new Setting(this.containerEl)
-      .setName('History Content')
-      .setDesc(`Display today in history content.`)
-      .addToggle(toggle =>
-        toggle
-          .setValue(this.plugin.settings.historyShowDirect || false)
-          .onChange(value => {
-            this.plugin.settings.historyShowDirect = value
-            this.plugin.saveSettings()
-          })
-      )
-
-    // 去年今日的 数量 默认1
+    // new Setting(this.containerEl)
+    //   .setName('Custom today in history')
+    //   .setDesc('Used for the header of history  (default ## Today in history)')
+    //   .addText(text =>
+    //     text
+    //       .setPlaceholder(`start with #`)
+    //       .setValue(
+    //         this.plugin.settings.todayHistoryHeader || '## Today in history'
+    //       )
+    //       .onChange(value => {
+    //         this.plugin.settings.todayHistoryHeader = value
+    //         this.plugin.saveSettings()
+    //       })
+    //   )
     //
-    new Setting(this.containerEl)
-      .setName('History Count')
-      .setDesc(`years you want to display in today in history section.`)
-      .addDropdown(dropdown =>
-        dropdown
-          .addOptions({
-            1: '1 year',
-            2: '2 years',
-            3: '3 years',
-            4: '4 years',
-            5: '5 years'
-          })
-          .setValue(this.plugin?.settings.todayHistoryCount || 1)
-          .onChange(value => {
-            this.plugin.settings.todayHistoryCount = value
-            this.plugin.saveSettings()
-          })
-      )
+    // new Setting(this.containerEl)
+    //   .setName('History Content')
+    //   .setDesc(`Display today in history content.`)
+    //   .addToggle(toggle =>
+    //     toggle
+    //       .setValue(this.plugin.settings.historyShowDirect || false)
+    //       .onChange(value => {
+    //         this.plugin.settings.historyShowDirect = value
+    //         this.plugin.saveSettings()
+    //       })
+    //   )
+    //
+    // new Setting(this.containerEl)
+    //   .setName('History Count')
+    //   .setDesc(`years you want to display in today in history section.`)
+    //   .addDropdown(dropdown =>
+    //     dropdown
+    //       .addOptions({
+    //         1: '1 year',
+    //         2: '2 years',
+    //         3: '3 years',
+    //         4: '4 years',
+    //         5: '5 years'
+    //       })
+    //       .setValue(this.plugin?.settings.todayHistoryCount || 1)
+    //       .onChange(value => {
+    //         this.plugin.settings.todayHistoryCount = value
+    //         this.plugin.saveSettings()
+    //       })
+    //   )
   }
 }

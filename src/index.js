@@ -290,43 +290,31 @@ export default class DailyTodoProPlugin extends Plugin {
           dailyNoteContent += todos_todayString
         }
 
-        // 是否选择去年今日
-
-        // 如果选择去年今日
-
-        /**
-         * 1. 显示几年？
-         * 2. 默认显示1年
-         * 3. 最多显示5年
-         * 4. 显示双链还是反链
-         * 5. 标题自定义
-         */
-        if (displayTodayInHistory) {
-          let lastYearToday = [todayHistoryHeader + '\n']
-
-          const [year, month, day] = moment()
-            .format('YYYY-MM-DD')
-            .split('-')
-
-          // 显示双链还是反链
-          let historyBeginWith = `- [[`
-          if (historyShowDirect) {
-            historyBeginWith = `- ![[`
-          }
-
-          for (let i = 1; i <= todayHistoryCount; i++) {
-            // if (historyShowDirect) {
-            lastYearToday.push(
-              `${historyBeginWith}${year - i}-${month}-${day}]]`
-            )
-            // }
-          }
-
-          const lastYearToday_String = `\n${lastYearToday.join('\n')}`
-
-          dailyNoteContent += lastYearToday_String
-          dailyNoteContent += '\n'
-        }
+        // Day-in-history feature disabled in this fork.
+        //
+        // if (displayTodayInHistory) {
+        //   let lastYearToday = [todayHistoryHeader + '\n']
+        //
+        //   const [year, month, day] = moment()
+        //     .format('YYYY-MM-DD')
+        //     .split('-')
+        //
+        //   let historyBeginWith = `- [[`
+        //   if (historyShowDirect) {
+        //     historyBeginWith = `- ![[`
+        //   }
+        //
+        //   for (let i = 1; i <= todayHistoryCount; i++) {
+        //     lastYearToday.push(
+        //       `${historyBeginWith}${year - i}-${month}-${day}]]`
+        //     )
+        //   }
+        //
+        //   const lastYearToday_String = `\n${lastYearToday.join('\n')}`
+        //
+        //   dailyNoteContent += lastYearToday_String
+        //   dailyNoteContent += '\n'
+        // }
         // return
 
         // 最终执行 更改文件

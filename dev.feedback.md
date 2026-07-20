@@ -16,3 +16,14 @@ It works quite nicely! It just happens to ignore numbered to-dos, as in :
 ```
 
 else from that, everything is fine by now
+
+
+---
+
+2026-07-20 @15h @gmt-3
+
+Test of V00.2 - Build warnings review.
+
+Build note:
+- Running `npm run build` produced Rollup warnings about unused external imports for `Tasks` in `src/index.js`, `src/ui/RolloverSettingTab.js`, and `src/ui/UndoModal.js`.
+- These warnings do not prevent the build from succeeding, but they are worth cleaning up later.
