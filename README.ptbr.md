@@ -1,48 +1,86 @@
 # obsd.daily.repass
 
-📘 Um complemento para o Obsidian que ajuda a levar tarefas incompletas para o dia atual de forma simples e organizada.
+[English 🇬🇧](README.md)
 
-Se você costuma abrir uma nota diária e perceber que ainda há tarefas pendentes de outros dias, este plugin pode ajudar a repassar essas atividades automaticamente.
+Um companheiro de revisão diária para o [Obsidian](https://obsidian.md) que leva suas tarefas não concluídas para a nota de hoje automaticamente — sem você precisar copiar e colar nada.
 
-> Repassar o seu dia, uma nota de cada vez.
+> Repasse o seu dia, uma nota de cada vez.
 
-## O que este plugin faz
+### O que esse plugin faz, na prática?
 
-- Move tarefas não concluídas de notas antigas para a nota diária de hoje
-- Pode remover os itens da nota original depois de repassá-los
-- Permite ignorar tarefas vazias, se você quiser
-- Ajuda a organizar tudo em uma seção específica do seu template, se preferir
+Imagine que você tem a função de **Notas diárias** configurada no Obsidian, e a nota de ontem ficou com um ou dois itens que você não terminou. Normalmente, você teria que abrir a nota de ontem, procurar o que ficou pendente e copiar tudo manualmente para a nota de hoje.
 
-## Para quem é útil
+Este plugin faz isso por você:
 
-Este plugin é interessante para quem:
+- Ele olha para a sua nota diária mais recente.
+- Ele pega as tarefas não concluídas (ou, se você preferir, uma seção inteira da nota) que ainda estão em aberto.
+- Ele adiciona tudo isso na nota de hoje, automaticamente.
+- Se você quiser, ele também pode remover esses itens da nota de ontem depois de movidos, para você não acabar com duplicatas.
 
-- gosta de manter uma rotina diária no Obsidian
-- usa notas diárias e templates
-- quer evitar copiar e colar tarefas manualmente
-- prefere um fluxo simples de revisão do dia
+Você aciona o plugin quando quiser, com um único comando — ele não faz nada sozinho, escondido, sem você saber.
+
+### Preciso de mais alguma coisa instalada?
+
+Sim — este plugin depende da função **Notas diárias** (que já vem no Obsidian) ou do plugin da comunidade **Periodic Notes**. Um dos dois precisa estar ativado e configurado (com pasta e formato de data definidos) para que este plugin tenha o que processar.
+
+## Instalando o plugin
+
+Este plugin ainda não está disponível na loja oficial de **plugins da comunidade** do Obsidian. Por isso, a forma mais simples de instalá-lo é usando um pequeno plugin auxiliar chamado **BRAT**. Não se preocupe — o BRAT é, ele mesmo, um plugin normal e bem conhecido do Obsidian, e instalá-lo leva menos de um minuto.
+
+**Passo 1 — Instale o BRAT**
+1. No Obsidian, abra **Configurações**.
+2. Vá em **Plugins da comunidade** e clique em **Navegar**.
+3. Procure por `BRAT` (nome completo: *Obsidian42 - BRAT*).
+4. Clique em **Instalar** e, em seguida, em **Ativar**.
+
+**Passo 2 — Use o BRAT para instalar este plugin**
+1. Abra a **paleta de comandos** (`Ctrl/Cmd + P`).
+2. Procure e execute o comando `BRAT: Add a beta plugin for testing`.
+3. Cole o link deste repositório: `https://github.com/<seu-usuario-do-github>/obsd.daily.repass`
+4. Clique em **Add Plugin** e aguarde a confirmação do BRAT.
+5. Volte em **Configurações → Plugins da comunidade**, encontre "obsd.daily.repass" na sua lista e ative o botão.
+
+Pronto — sem precisar baixar ou mover arquivo nenhum manualmente. Quando sair uma nova versão, você consegue atualizar direto pela tela de configurações do BRAT, com poucos cliques.
 
 ## Como usar
 
-1. Abra a paleta de comandos no Obsidian.
-2. Procure por “todo pro” ou pelo comando de repasse.
-3. Escolha a opção para trazer as tarefas para a nota de hoje.
-4. Se necessário, use a função de desfazer para voltar ao estado anterior.
+1. Abra a **paleta de comandos** (`Ctrl/Cmd + P`, ou `/` dentro de uma nota).
+2. Procure por **"obsd.repass"**.
+3. Escolha **"bring tasks to today's note"** para trazer os itens não concluídos de ontem para a nota de hoje.
+4. Se algo deu errado, escolha **"Undo last import/rollover"** para desfazer — isso só funciona por cerca de 2 minutos depois de rodar o comando.
 
-## Configurações rápidas
+## Configurações, em termos simples
 
-Você pode escolher:
+Você encontra essas opções em **Configurações → obsd.daily.repass**:
 
-- se quer remover os itens da nota antiga após o repasse
-- se quer ignorar tarefas vazias
-- em qual seção da sua nota as tarefas devem aparecer
+- **Template heading** (cabeçalho do modelo) — Escolha um cabeçalho (como `## A fazer`) se quiser trazer só aquela seção da nota de ontem. Deixe em "None" e o plugin vai simplesmente pegar todo item não concluído do arquivo.
+- **Skip already-completed tasks** (pular tarefas já concluídas) — Quando ativado, tarefas finalizadas (`- [x]`) ficam para trás, em vez de serem copiadas junto com o resto.
+- **Delete rolled-over content from previous day** (apagar da nota anterior o que foi movido) — Quando ativado, assim que algo é copiado com sucesso para hoje, ele também é removido da nota de ontem. Deixe desativado se preferir manter um histórico completo e não se importar com uma certa duplicação.
+- **Remove empty todos in rollover** (remover itens vazios) — Ignora tarefas sem nenhum texto (apenas uma caixinha de marcação vazia).
 
-Se nenhuma seção for escolhida, as tarefas são adicionadas ao final da nota.
+## O que o plugin não faz
 
-## Exemplo prático
+- Ele não roda sozinho em segundo plano — você decide quando acioná-lo.
+- Ele olha só um dia para trás por vez, não todo o seu histórico de uma vez.
+- Ele não consegue desfazer alterações feitas há mais de alguns minutos, ou depois que o Obsidian foi fechado e reaberto.
 
-Imagine que você começou uma tarefa ontem e ainda não concluiu. Com este plugin, ela pode aparecer automaticamente na sua nota diária de hoje, ajudando a manter o fluxo contínuo sem perder o contexto.
+---
 
-## Licença
+### Sobre este fork — obsd.daily.repass
 
-Este repositório inclui partes do projeto original sob licença MIT, além de contribuições mais recentes sob licença específica do fork. Consulte o arquivo de licença para mais detalhes.
+Este repositório é um fork de `obsidian-daily-todo-pro` / `obsidian-rollover-daily-todos`, mantido por Deki @ kuuh.art.
+
+Este fork inclui código licenciado sob MIT proveniente das fontes originais. As partes originais do projeto permanecem sob a licença MIT, enquanto as novas contribuições deste fork são licenciadas sob a Duck License, para uso não comercial. O uso comercial das novas contribuições requer permissão prévia; entre em contato com o detentor dos direitos autorais para obter uma licença. Veja `LICENSE` para mais detalhes.
+
+#### Fonte original
+
+- Projeto original (upstream): https://github.com/shichongrui/obsidian-rollover-daily-todos
+- Fork original: https://github.com/die4passion/obsidian-daily-todo-pro
+- Autor(es) original(is): `shichongrui`, `Die4passion`
+
+#### Licença
+
+- Código original (upstream): MIT
+- Novas contribuições deste fork: Duck License, para uso não comercial
+- O uso comercial das novas contribuições deste fork requer permissão prévia
+- Veja `LICENSE` para o texto completo da Duck License e os requisitos de atribuição.
