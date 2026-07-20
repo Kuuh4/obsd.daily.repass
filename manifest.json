@@ -1,7 +1,7 @@
 {
 	"id": "obsd.daily.repass",
 	"name": "obsd.daily.repass",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"minAppVersion": "0.12.12",
 	"description": "bring your unfinished tasks to the next daily note",
 	"author": "Deki",
