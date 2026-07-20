@@ -1,6 +1,6 @@
 {
   "name": "obsd.daily.repass",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "bring your unfinished tasks to the next daily note",
   "main": "main.js",
   "scripts": {

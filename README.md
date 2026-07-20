@@ -21,7 +21,7 @@ contributions requires prior permission; please contact the copyright holder to 
 
 ## Obsidian Daily Repass
 
-[中文说明](README-CN.md)
+[Português](README.ptbr.md)
 
 A daily review companion for Obsidian that helps you carry unfinished work forward into today’s note and keep your routine simple.
 
