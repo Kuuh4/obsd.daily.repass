@@ -36,7 +36,7 @@ This plugin isn't listed in Obsidian's official Community Plugins browser yet, s
 **Step 2 — Use BRAT to install this plugin**
 1. Open the **command palette** (`Ctrl/Cmd + P`).
 2. Search for and run `BRAT: Add a beta plugin for testing`.
-3. Paste in this repository's link: `https://github.com/<your-github-username>/obsd.daily.repass`
+3. Paste in this repository's link: `https://github.com/kuuh4/obsd.daily.repass`
 4. Click **Add Plugin** and wait for BRAT to confirm it worked.
 5. Go back to **Settings → Community plugins**, find "obsd.daily.repass" in your list, and toggle it **on**.
 
