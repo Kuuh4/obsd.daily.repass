@@ -36,7 +36,7 @@ Este plugin ainda não está disponível na loja oficial de **plugins da comunid
 **Passo 2 — Use o BRAT para instalar este plugin**
 1. Abra a **paleta de comandos** (`Ctrl/Cmd + P`).
 2. Procure e execute o comando `BRAT: Add a beta plugin for testing`.
-3. Cole o link deste repositório: `https://github.com/<seu-usuario-do-github>/obsd.daily.repass`
+3. Cole o link deste repositório: `https://github.com/kuuh4/obsd.daily.repass`
 4. Clique em **Add Plugin** e aguarde a confirmação do BRAT.
 5. Volte em **Configurações → Plugins da comunidade**, encontre "obsd.daily.repass" na sua lista e ative o botão.
 
